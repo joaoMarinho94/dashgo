@@ -1,5 +1,9 @@
-import { Flex, Icon, Input, Text } from '@chakra-ui/react';
-import { RiSearchLine } from 'react-icons/ri';
+import { Avatar, Box, Flex, HStack, Icon, Input, Text } from '@chakra-ui/react';
+import {
+  RiNotificationLine,
+  RiSearchLine,
+  RiUserAddLine,
+} from 'react-icons/ri';
 
 export default function SignIn(): JSX.Element {
   return (
@@ -43,6 +47,36 @@ export default function SignIn(): JSX.Element {
         />
 
         <Icon as={RiSearchLine} fontSize="20" />
+      </Flex>
+
+      <Flex align="center" ml="auto">
+        <HStack
+          spacing="8"
+          mx="8"
+          pr="8"
+          py="1"
+          color="gray.300"
+          borderRightWidth={1}
+          borderColor="gray.700"
+        >
+          <Icon as={RiNotificationLine} fontSize="20" />
+          <Icon as={RiUserAddLine} fontSize="20" />
+        </HStack>
+
+        <Flex align="center">
+          <Box mr="4" textAlign="right">
+            <Text>João Paulo</Text>
+            <Text color="gray.300" fontSize="small">
+              email.com
+            </Text>
+          </Box>
+
+          <Avatar
+            size="md"
+            name="Joao Paulo"
+            src="https://github.com/joaoMarinho94.png"
+          />
+        </Flex>
       </Flex>
     </Flex>
   );
