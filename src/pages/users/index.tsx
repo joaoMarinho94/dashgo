@@ -13,7 +13,7 @@ import {
   Thead,
   Tr,
 } from '@chakra-ui/react';
-import { RiAddLine, RiPencilLine, RiPencilRulerLine } from 'react-icons/ri';
+import { RiAddLine, RiPencilLine } from 'react-icons/ri';
 
 import Header from '../../components/Header';
 import Pagination from '../../components/Pagination';
