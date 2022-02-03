@@ -30,6 +30,7 @@
     "yup": "^0.32.11"
   },
   "devDependencies": {
+    "@types/faker": "5.5.3",
     "@types/jest": "^26.0.21",
     "@types/multer": "^1.4.5",
     "@types/node": "^14.14.35",
@@ -47,6 +48,7 @@
     "eslint-plugin-react": "^7.21.5",
     "eslint-plugin-react-hooks": "^4",
     "eslint-plugin-testing-library": "^3.10.2",
+    "faker": "5.5.3",
     "identity-obj-proxy": "^3.0.0",
     "miragejs": "^0.1.43",
     "prettier": "^2.2.1",
