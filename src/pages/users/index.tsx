@@ -28,7 +28,17 @@ export default function UserList(): JSX.Element {
   const { data, isLoading, error } = useQuery('users', async () => {
     const response = await fetch('http://localhost:3000/api/users');
     const dataJson = await response.json();
-    return dataJson;
+
+    return dataJson.users.map(user => ({
+      id: user.id,
+      name: user.name,
+      email: user.email,
+      createdAt: new Date(user.createdAt).toLocaleDateString('pt-BR', {
+        day: '2-digit',
+        month: 'long',
+        year: 'numeric',
+      }),
+    }));
   });
 
   const isWideVersion = useBreakpointValue({
@@ -84,36 +94,39 @@ export default function UserList(): JSX.Element {
                   </Tr>
                 </Thead>
                 <Tbody>
-                  <Tr>
-                    <Td px={['4', '4', '6']}>
-                      <Checkbox colorScheme="pink" />
-                    </Td>
-                    <Td>
-                      <Box fontWeight="bold">
-                        <Text fontSize="sm" color="gray.300">
-                          joaopaulim94@gmail.com
-                        </Text>
-                      </Box>
-                    </Td>
-                    {isWideVersion && (
-                      <Td>
-                        <Text fontSize="sm" color="gray.300">
-                          04 de Abril, 2022
-                        </Text>
+                  {data.map(user => (
+                    <Tr>
+                      <Td px={['4', '4', '6']}>
+                        <Checkbox colorScheme="pink" />
                       </Td>
-                    )}
-                    <Td>
-                      <Button
-                        as="a"
-                        size="sm"
-                        fontSize="sm"
-                        colorScheme="purple"
-                        leftIcon={<Icon as={RiPencilLine} fontSize="16" />}
-                      >
-                        {isWideVersion ? 'Editar' : ''}
-                      </Button>
-                    </Td>
-                  </Tr>
+                      <Td>
+                        <Box>
+                          <Text fontWeight="bold">{user.name}</Text>
+                          <Text fontSize="sm" color="gray.300">
+                            {user.email}
+                          </Text>
+                        </Box>
+                      </Td>
+                      {isWideVersion && (
+                        <Td>
+                          <Text fontSize="sm" color="gray.300">
+                            {user.createdAt}
+                          </Text>
+                        </Td>
+                      )}
+                      <Td>
+                        <Button
+                          as="a"
+                          size="sm"
+                          fontSize="sm"
+                          colorScheme="purple"
+                          leftIcon={<Icon as={RiPencilLine} fontSize="16" />}
+                        >
+                          {isWideVersion ? 'Editar' : ''}
+                        </Button>
+                      </Td>
+                    </Tr>
+                  ))}
                 </Tbody>
               </Table>
 
