@@ -8,6 +8,7 @@ import {
   Registry,
   Response,
   Server,
+  ActiveModelSerializer,
 } from 'miragejs';
 import { AnyFactories, Assign, ModelDefinition } from 'miragejs/-types';
 import faker from 'faker';
@@ -27,6 +28,10 @@ export function makeServer(): Server<
   >
 > {
   const server = createServer({
+    serializers: {
+      application: ActiveModelSerializer,
+    },
+
     models: {
       user: Model.extend<Partial<User>>({}),
     },
