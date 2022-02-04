@@ -23,15 +23,15 @@ import { useQuery } from 'react-query';
 import Header from '../../components/Header';
 import Pagination from '../../components/Pagination';
 import Sidebar from '../../components/Sidebar';
+import { api } from '../../services/api';
 
 export default function UserList(): JSX.Element {
   const { data, isLoading, isFetching, error } = useQuery(
     'users',
     async () => {
-      const response = await fetch('http://localhost:3000/api/users');
-      const dataJson = await response.json();
+      const { data: usersData } = await api.get('/users');
 
-      return dataJson.users.map(user => ({
+      return usersData.users.map(user => ({
         id: user.id,
         name: user.name,
         email: user.email,
